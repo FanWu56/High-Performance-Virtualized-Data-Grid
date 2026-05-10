@@ -9,7 +9,7 @@ type Column<T> = {
     align?: Align
     sortable?: boolean
     render?: (value: unknown, record: T, rowIndex: number) => React.ReactNode
-    dataindex?: keyof T;
+    dataIndex?: keyof T;       //which item need of a single data
 }
 
 type SortDirection = "asc" | "desc"
@@ -128,6 +128,92 @@ type HeaderCellProps<T> = {
     sortState: SortState<T>
     onSort: (column: Column<T>) => void
 }
+
+const HeaderCell = memo(function HeaderCell<T extends Record<string, unknown>>({
+    column,
+    sortState,
+    onSort,
+    }: HeaderCellProps<T>){
+        const isActive = sortState?.key === (column.dataIndex as string | undefined)
+        const canSort = Boolean(column.sortable && column.dataIndex)
+
+        return( 
+            <div
+                role="columnheader"
+                className="flex h-full shrink-0 items-center border-b
+                border-slate-200 bg-slate-50 px-4 text-sm font-semibold
+                text-slate-700"
+                style={{ width: column.width, justifyContent: justifyContent(column.align) }}
+            >
+                {
+                    canSort? (
+                        <button
+                            type="button"
+                            onClick={()=> onSort(column)}
+                            className = "inline-flex items-center gap-1 transition hover:text-slate-900"
+
+                        >
+                            <span>{column.title}</span>
+                            <SortIcon active={Boolean(isActive)} direction={sortState?.direction} />
+                        </button>):(
+                            <span>{column.title}</span>
+                        )
+                }
+            </div>
+        )
+    }) as <T extends Record<string, unknown>>(props: HeaderCellProps<T>) => React.JSX.Element;
+
+// add "as..." here because sometimes typescript cant work well with memo(something<T>), so manully assert it
+
+function justifyContent(align: Align = "left") {
+  if (align === "center") return "center";
+  if (align === "right") return "flex-end";
+  return "flex-start";
+}
+
+type RowProps<T> = {
+  row: T;
+  rowIndex: number;
+  columns: Column<T>[];
+  rowHeight: number;
+};
+
+const VirtualRow = memo(function VirtualRow<T extends Record<string, unknown>>({
+    row,
+    rowIndex,
+    columns,
+    rowHeight
+    }: RowProps<T>){
+        return (
+            <div
+                role="row"
+                className="flex border-b border-slate-100 bg-white transition hover:bg-slate-50"
+                style={{ height: rowHeight }}
+            >
+                {
+                    columns.map((column)=>{
+                        const rawValue = column.dataIndex? row[column.dataIndex] : undefined
+                        const content = column.render? column.render(rawValue, row, rowIndex) : String(rawValue ?? "-");
+
+                        return(
+                            <div
+                                key={column.key}
+                                role="gridcell"
+                                className="flex shrink-0 items-center px-4 text-sm text-slate-700"
+                                style={{ width: column.width, justifyContent: justifyContent(column.align) }}
+                            >
+                                <div className="min-w-0 truncate">{content}</div>
+                            </div>
+                        )
+                    }
+
+                    )
+                }
+            </div>
+        )
+    }
+
+)
 
 
 
