@@ -1,0 +1,140 @@
+
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  background: #f5f6fa;
+  color: #1f2937;
+}
+
+.app {
+  padding: 32px;
+}
+
+.description {
+  margin-bottom: 16px;
+  color: #6b7280;
+}
+
+.data-grid {
+  border: 1px solid #d1d5db;
+  background: white;
+  overflow: hidden;
+}
+
+.data-grid-header {
+  display: flex;
+  background: #f3f4f6;
+  border-bottom: 1px solid #d1d5db;
+  font-weight: 700;
+}
+
+.data-grid-viewport {
+  overflow: auto;
+  position: relative;
+}
+
+.data-grid-spacer {
+  position: relative;
+}
+
+.data-grid-visible-rows {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.data-grid-row {
+  display: flex;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.data-grid-row:hover {
+  background: #f9fafb;
+}
+
+.data-grid-cell {
+  flex-shrink: 0;
+  padding: 10px 12px;
+  border-right: 1px solid #e5e7eb;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.data-grid-header-cell {
+  padding: 12px;
+  border: none;
+  border-right: 1px solid #e5e7eb;
+  background: #f3f4f6;
+  font: inherit;
+  font-weight: 700;
+  text-align: left;
+  cursor: pointer;
+}
+
+.data-grid-footer {
+  padding: 8px 12px;
+  border-top: 1px solid #d1d5db;
+  font-size: 13px;
+  color: #6b7280;
+  background: #f9fafb;
+}
+
+.status {
+  display: inline-block;
+  padding: 3px 8px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.status-active {
+  background: #dcfce7;
+  color: #166534;
+}
+
+.status-inactive {
+  background: #fee2e2;
+  color: #991b1b;
+}
+
+.status-pending {
+  background: #fef3c7;
+  color: #92400e;
+}
+
+.data-grid-header-cell:hover {
+  background: #e5e7eb;
+}
+
+.data-grid-toolbar {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 12px;
+  border-bottom: 1px solid #d1d5db;
+  background: #ffffff;
+}
+
+.data-grid-search {
+  width: 280px;
+  padding: 8px 10px;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  font-size: 14px;
+}
+
+.data-grid-search:focus {
+  outline: 2px solid #93c5fd;
+  border-color: #60a5fa;
+}
+
+.data-grid-count {
+  font-size: 13px;
+  color: #6b7280;
+}
