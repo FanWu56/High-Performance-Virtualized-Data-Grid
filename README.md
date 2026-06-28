@@ -30,10 +30,10 @@ Rendering 100,000 table rows directly creates a large number of DOM nodes and ca
 This project solves that by using windowed rendering:
 
 ```txt
-100,000 rows in data
+100,000+ rows in data
 ↓
 calculate visible row range from scrollTop
 ↓
 render only visible rows + overscan
 ↓
-move visible rows into position using translateY
+move visible rows into position using translate
