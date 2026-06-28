@@ -25,7 +25,7 @@ The grid supports rendering 100,000+ rows while keeping the actual DOM node coun
 
 ## Why This Project
 
-Rendering 100,000 table rows directly creates a large number of DOM nodes and can make scrolling slow or unresponsive.
+Rendering 100,000+ table rows directly creates a large number of DOM nodes and can make scrolling slow or unresponsive.
 
 This project solves that by using windowed rendering:
 
