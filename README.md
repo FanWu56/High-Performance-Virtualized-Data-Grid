@@ -37,3 +37,5 @@ calculate visible row range from scrollTop
 render only visible rows + overscan
 ↓
 move visible rows into position using translate
+
+## Getting Started
