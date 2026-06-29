@@ -41,3 +41,8 @@ move visible rows into position using translate
 
 ## Getting Started
 
+Clone the repository: git clone https://github.com/FanWu56/High-Performance-Virtualized-Data-Grid
+
+Install dependencies: npm install
+
+Run the development server: npm run dev
